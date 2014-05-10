@@ -1,0 +1,222 @@
+
+@mixin fontFace($family,$src,$weight: normal,$style: normal) {
+	@font-face {
+		font-family: $family;
+		src: url('#{$src}.eot'); // IE9 compat
+		src: url('#{$src}.eot?#iefix') format('embedded-opentype'), // IE8 and below
+			url('#{$src}.woff') format('woff'), // standards
+			url('#{$src}.ttf') format('truetype'), // Safari, Android, iOS
+			url('#{$src}.svg##{$family}') format('svg'); // legacy iOS
+
+		font-style: $style;
+		font-weight: $weight;
+	}
+}
+
+	@include fontFace('Rockwell Bold','fonts/RockwellBold/rockwell_bold');
+
+@mixin horizontal-gradient($fromColor, $toColor) {
+	background: $fromColor; /* Old browsers */
+	background: -moz-linear-gradient(left, $fromColor 0%, $toColor 50%, $toColor 50%, $fromColor 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,$fromColor), color-stop(50%,$toColor), color-stop(50%,$toColor), color-stop(100%,$fromColor)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left, $fromColor 0%,$toColor 50%,$toColor 50%,$fromColor 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left, $fromColor 0%,$toColor 50%,$toColor 50%,$fromColor 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left, $fromColor 0%,$toColor 50%,$toColor 50%,$fromColor 100%); /* IE10+ */
+	background: linear-gradient(to right, $fromColor 0%,$toColor 50%,$toColor 50%,$fromColor 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$fromColor', endColorstr='$fromColor',GradientType=1 ); /* IE6-9 */
+}
+
+@mixin linear-gradient($fromColor, $toColor) {
+	background: $fromColor; /* Old browsers */
+	background: -moz-linear-gradient(top, $fromColor 0%, $toColor 0%, $fromColor 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$fromColor), color-stop(0%,$toColor), color-stop(100%,$fromColor)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, $fromColor 0%,$toColor 0%,$fromColor 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, $fromColor 0%,$toColor 0%,$fromColor 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, $fromColor 0%,$toColor 0%,$fromColor 100%); /* IE10+ */
+	background: linear-gradient(to bottom, $fromColor 0%,$toColor 0%,$fromColor 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$fromColor', endColorstr='$fromColor',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin diagonal-gradient($fromColor, $toColor) {
+	background: #000000; /* Old browsers */
+	background: -moz-linear-gradient(-45deg, #000000 0%, #b3bed9 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#000000), color-stop(99%,#b3bed9)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg, #000000 0%,#b3bed9 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg, #000000 0%,#b3bed9 99%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg, #000000 0%,#b3bed9 99%); /* IE10+ */
+	background: linear-gradient(135deg, #000000 0%,#b3bed9 99%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#b3bed9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+
+	height: 100%;
+	width: 100%;
+	
+}
+
+h1 {
+	font-family: 'Rockwell Bold';
+	font-size: 3em;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: bold;
+	color: #0063c8;
+}
+
+a {
+	color: #0063C8;
+	text-decoration: none;
+}
+
+header {
+	.topGradient {
+		@include horizontal-gradient(#969696, #cacaca);
+		height:30px;
+	}
+}
+
+
+#wrap {
+	min-height: 100%;
+	width: 100%;
+	@include linear-gradient(#939393, #fff);
+}
+
+.subWrap {
+	width: 960px;
+	margin: 0 auto;
+
+}
+header {
+	color: #fff;
+	h1 {
+		font-family: 'Rockwell Bold';
+		font-size: 3em;
+		font-weight: bold;
+		float:left;
+		text-transform: uppercase;
+	}
+	h2 {
+		font-family: 'Rockwell Bold';
+		color: #fff;
+		font-size: 2.4em;
+		border-bottom: 5px solid #618ad3;
+		display: inline-block;
+		margin-left: 10px;
+		text-transform: uppercase;
+		width: 62%;
+	}
+	a {
+		color: #fff;
+	}
+
+}
+
+
+/*This is kind of gross.*/
+	nav {
+		background-color: #7f7f7f;
+		overflow: auto;
+		padding: 8px 0;
+		
+		 > ul {
+			font-family: Arial, sans-serif;
+			 > li {
+				display: inline-block;
+				float: left;
+				width: 16%;
+				text-transform: uppercase;
+				text-align: center;
+				ul {
+					display: none;
+					background-color: #618ad3;
+				}
+				&:hover {
+					ul {
+						display: block;
+						position:absolute;
+						z-index: 10;
+						height: auto;
+						li {
+							float: none;
+							padding: 10px 5px;
+							border-bottom: 1px solid #ccc;
+
+							&:last-child {
+								border-bottom: none;
+							}
+
+							a {
+								font-size: 0.8em;
+							}
+							
+						}
+					}
+				}
+
+				a {
+					&:hover {
+						color: #00f;
+					}
+				}
+			}
+		}
+	}
+
+
+
+
+
+.logoContainer {
+	@include diagonal-gradient(#000, #b6c1db);
+	padding: 20px 20px 50px;
+	ul {
+		font-family: 'Droid Sans';
+		float:right;
+		margin-right: 20px;
+		li {
+			display: inline-block;
+			float:left;
+			margin:0 20px;
+			letter-spacing: 2px;
+			font-size: 0.75em;
+		}
+	}
+}
+
+
+#slideshowWrapper {
+	display: inline-block;
+	float: left;
+}
+
+.about {
+	display: inline-block;
+	width: 32%;
+	text-align: justify;
+	h2 {
+		font-family: 'Rockwell Bold';
+		text-align: center;
+		color: #000;
+		font-size: 1.75em;
+		text-transform: uppercase;
+		margin: 10px 0 0;
+	}
+	p {
+		padding: 10px 10px ;
+	}
+}
+
+.center {
+	clear: left;
+}
