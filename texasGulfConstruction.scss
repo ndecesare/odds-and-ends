@@ -1,3 +1,6 @@
+$grey : #7f7f7f;
+$blue : #618ad3;
+
 
 @mixin fontFace($family,$src,$weight: normal,$style: normal) {
 	@font-face {
@@ -11,6 +14,12 @@
 		font-style: $style;
 		font-weight: $weight;
 	}
+}
+
+
+@mixin floatLeft() {
+	display: inline-block;
+	float: left;
 }
 
 	@include fontFace('Rockwell Bold','fonts/RockwellBold/rockwell_bold');
@@ -49,27 +58,20 @@
 }
 
 
-html {
+html, body {
 	height: 100%;
 	width: 100%;
 }
 
-body {
 
-	height: 100%;
-	width: 100%;
+h1 {
+
+	font: bold 3em 'Rockwell Bold';
 	
 }
 
-h1 {
-	font-family: 'Rockwell Bold';
-	font-size: 3em;
-	font-weight: bold;
-}
-
 h2 {
-	font-size: 18px;
-	font-weight: bold;
+	font: bold 18px;
 	color: #0063c8;
 }
 
@@ -93,16 +95,16 @@ header {
 }
 
 .subWrap {
+	min-height: 100%;
+	position: relative;
 	width: 960px;
 	margin: 0 auto;
-
+	background-color: #fff;
+	min-height: 925px;
 }
 header {
 	color: #fff;
 	h1 {
-		font-family: 'Rockwell Bold';
-		font-size: 3em;
-		font-weight: bold;
 		float:left;
 		text-transform: uppercase;
 	}
@@ -110,7 +112,7 @@ header {
 		font-family: 'Rockwell Bold';
 		color: #fff;
 		font-size: 2.4em;
-		border-bottom: 5px solid #618ad3;
+		border-bottom: 5px solid $blue;
 		display: inline-block;
 		margin-left: 10px;
 		text-transform: uppercase;
@@ -125,21 +127,20 @@ header {
 
 /*This is kind of gross.*/
 	nav {
-		background-color: #7f7f7f;
+		background-color: $grey;
 		overflow: auto;
 		padding: 8px 0;
 		
 		 > ul {
 			font-family: Arial, sans-serif;
 			 > li {
-				display: inline-block;
-				float: left;
+				@include floatLeft();
 				width: 16%;
 				text-transform: uppercase;
 				text-align: center;
 				ul {
 					display: none;
-					background-color: #618ad3;
+					background-color: $blue;
 				}
 				&:hover {
 					ul {
@@ -185,8 +186,7 @@ header {
 		float:right;
 		margin-right: 20px;
 		li {
-			display: inline-block;
-			float:left;
+			@include floatLeft();
 			margin:0 20px;
 			letter-spacing: 2px;
 			font-size: 0.75em;
@@ -196,8 +196,7 @@ header {
 
 
 #slideshowWrapper {
-	display: inline-block;
-	float: left;
+	@include floatLeft();
 }
 
 .about {
@@ -213,10 +212,127 @@ header {
 		margin: 10px 0 0;
 	}
 	p {
-		padding: 10px 10px ;
+		padding: 10px 10px;
+		font-size: 0.9em;
 	}
+	
 }
+
+.aboutLink {
+		border-top: 2px solid $blue;
+		margin-top: 25px;
+		padding-top: 10px;
+		a {
+			font: italic 0.8em Arial;
+			text-decoration: underline;
+			background-image: url(res/blueArrow.png);
+			background-repeat: no-repeat;
+			padding-left: 20px;
+			margin-left: 10px;
+		}
+	}
 
 .center {
 	clear: left;
+	margin-top: 25px;
+	li {
+		@include floatLeft();
+		margin: 0 10px;
+	}
+	p {
+		color: #fff;
+		background-color: $grey;
+		padding: 5px;
+		position: relative;
+		bottom: 5px;
+		font-family: Arial, sans-serif;
+		font-weight: bold;
+	}
+}
+
+
+.contentWrap {
+	padding: 30px;
+	overflow: auto;
+	min-height: 740px;
+	h1 {
+		font: bold 2em 'Rockwell Bold';
+		border-bottom: 5px solid $blue;
+		text-transform: uppercase;
+		margin-bottom: 20px;
+	}
+}
+
+ main {
+ 	width: 60%;
+	float:left;
+
+	p {
+		text-align: justify;
+		padding: 10px;
+	}
+
+ }
+
+ .contentSide {
+ 	width: 40%;
+ 	float: left;
+
+ 	img {
+ 		float: right;
+ 		width: 320px;
+ 	}
+
+ 	figcaption {
+ 		float: right;
+ 		background-color: $grey;
+ 		width: 310px;
+ 		color: #fff;
+ 		font: bold 0.8em "Arial";
+ 		padding: 5px;
+ 		position: relative;
+ 		bottom: 5px;
+ 		text-transform: uppercase;
+ 	}
+
+ 	.aboutLink {
+ 		clear: both;
+ 		border-top: none;
+ 		a {
+ 			margin: 10px 0;
+ 			display: block;
+ 			color: #000;
+ 			text-decoration: none;
+ 			margin-left: 40px;
+ 			border-bottom: 2px solid $blue;
+ 			padding-bottom: 10px;
+ 			&:last-child {
+ 				border-bottom: none;
+ 			}
+ 		}
+ 	}
+
+ }
+
+footer {
+	@include diagonal-gradient(#000, #b6c1db);
+	height: 89px;
+	clear: left;
+	color: #fff;
+	font: 0.75em 'Droid Sans';
+	border-top: 5px solid $blue;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+
+	address {
+		display: inline-block;
+		padding-left: 10px;
+	}
+
+	.orgs {
+		display: inline-block;
+		float:right;
+		padding-right: 10px;
+	}
 }
