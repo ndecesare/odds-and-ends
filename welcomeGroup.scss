@@ -7,6 +7,10 @@
 
 }
 
+@mixin floatLeft() {
+display: inline-block;
+float: left;
+}
 @mixin linear-gradient($fromColor, $toColor) {
   background-color: $toColor; /* Fallback Color */
   background-image: -webkit-gradient(linear, left top, left bottom, from($fromColor), to($toColor)); /* Saf4+, Chrome */
@@ -29,8 +33,17 @@
   @else if $point == M {
     @media (max-width: 1199px) and (min-width: 980px) { @content; }
   }
-  @else if $point == S {
-    @media (max-width: 650px)  { @content; }
+    @else if $point == MI {
+    @media  (max-width: 980px) { @content; }
+  }
+  @else if $point == SM {
+  	 @media (max-width: 979px) and (min-width: 768px) { @content; }
+  }
+
+  @else if $point == XS {
+    @media (max-width: 767px)  { @content; }
+
+
   }
 }
 
@@ -56,8 +69,7 @@ address {
 }
 
 dl.first.hasImage {
-	display: inline-block;
-	float: left; 
+@include floatLeft;
 	height: 112px;
 	margin-right:20px;
 }
@@ -68,6 +80,10 @@ dt.title {
 		font-family: "Oswald", sans-serif;
 	}
 }
+
+dt.headerTitle {
+	width: 100%;
+}
 .propertyList {
 	display: inline-block;
 	margin-left: 20px;
@@ -77,6 +93,12 @@ dt.title {
 	}
 	.jobTitle {
 		font-size: 1em;
+	}
+}
+
+.container {
+	@include breakpoint(M) {
+		width: 1170px;
 	}
 }
 
@@ -103,6 +125,12 @@ dt.title {
 .bioThumb {
 	display: inline-block;
 	margin: 50px 0 0 60px;
+	img {
+	border-radius: 10px;
+	border: 1px solid #22911A;
+
+	}
+
 }
 	
 	a#svAsset {
@@ -160,9 +188,15 @@ dt a {
 					.navbar-inverse {
 						.navbar-inner {
 							@include linear-gradient(#32bc27, #22911a);
+							@include breakpoint(M) {
+								padding-left: 0;
+								padding-right: 0;
+								width: 950px;
+							}
 							border: none;
 							border-radius: 0;
 							box-shadow: 3px 3px 5px 1px #000;
+
 						}
 
 						.nav {
@@ -185,6 +219,8 @@ dt a {
 					}
 				}
 
+			
+
 				.dropdown-menu {
 					background-color: #32bc27 !important;
 					margin: 0 !important;
@@ -196,11 +232,17 @@ dt a {
 
 				nav.span12 {
 					width: 980px;
-					@include breakpoint(S) {
+					@include breakpoint(M) {
+						width: 950px;
+					}
+					@include breakpoint(SM) {
+						width: 100%
+					}
+					@include breakpoint(XS) {
 						width: 100%;
 					}
 					float: right;
-					@include breakpoint(M) {width: 950px; margin-right: 0;}
+					
 					position: relative;
 					top: 45px;
 					z-index: 6;
@@ -211,12 +253,20 @@ dt a {
 }
 				#myCarousel {
 					.carousel-inner {
-						.item {
+						 >.item {
+
+						 	>img {
+						 		
+						 	}
 							height: auto;
+							@include breakpoint(XS) {
+								display: none;
+							}
 									}
 								}
 							}
 .headRight {
+	width: 318px;
 	display:inline-block;
 	float: right;
 	a {
@@ -224,11 +274,17 @@ dt a {
 		font-weight: 300;
 		padding-right: 20px;
 	}
-	input {
+
+	form {
+		display: inline-block;
+			input {
 		border-radius: 20px;
 		background-image: url(../images/mglass.gif);
 		background-repeat: no-repeat;
 	}
+
+	}
+
 }
 .carousel.c-fade .item {
   -webkit-transition: opacity 1s ease-in-out;
@@ -258,31 +314,65 @@ dt a {
 }
 
 
+.carousel {
+	@include breakpoint(XS) {
+		@include linear-gradient(#fff, #bdd5ba);
+	}
+}
+
 .carousel-inner .mainContent {
+	@include breakpoint(XS) {
+		position: static;
+		background: transparent;
+	}
 	position: absolute;
 	top: 50px;
 	z-index: 5;
 }
 
 .topLeft {
+	@include floatLeft;
+
+	@include breakpoint(M) {
+		width: 300px;
+	}
+
+		@include breakpoint(SM) {
+		width: 300px;
+	}
+	@include breakpoint(XS) {
+		float: none;
+		margin-left: 0;
+		width: 100%;
+	}
 	font-family: "Oswald", sans-serif;
 	background-color: rgba(255, 255, 255, 0.75);
 	padding: 20px;
 	margin-left: 30px;
-	display: inline-block;
-	float: left;
+	
 }
 
 .topLeft h2 {
 	font-weight: 300;
 	color: #229019;
 
+
 }
 
 .topRight {
+	@include floatLeft;
+		@include breakpoint(SM) {
+		width: 262px;
+		margin-left: 30px;
+	}
+		@include breakpoint(XS) {
+		float: none;
+		margin-left: 0;
+		width: 100%;
+		padding: 0;
+		background-color: rgba(34, 104, 25, 0.6);
+	}
 	font-family: "Oswald", sans-serif;
-	display: inline-block;
-	float: left;
 	width: 400px;
 	color: #fff;
 	font-size: 1.4em;
@@ -290,9 +380,24 @@ dt a {
 	margin-left: 75px;
 	background-color: rgba(34, 144, 25, 0.6);
 	padding: 20px;
+	p {
+		@include breakpoint(XS) {
+			padding: 20px;
+		}
+	}
 }
 
 .bottomLeft {
+	@include breakpoint(XS) {
+		width: 100%;
+		margin: 0;
+	}
+	@include breakpoint(M) {
+		padding: 0 20px;
+	}
+	@include breakpoint(SM) {
+		display: none;
+	}
 	font-family: "Oswald", sans-serif;
 	padding: 20px;
 	background-color: rgba(34, 144, 25, 0.6);
@@ -331,16 +436,16 @@ dt a {
 					}
 				} 
 
-						/*#svGallery, #svFolder {
-							position: relative;
-							bottom: 30px;
-						}*/
 
 						.subPage {
 							overflow: auto;
 							/*width: 100%;*/
 							p {
 								text-align: justify;
+								@include breakpoint(MI) {
+									padding: 0 20px;
+								}
+
 							}
 						}
 
@@ -361,13 +466,21 @@ dt a {
 									color: #fff;
 									font-size: 1.3em;
 								}
+								a {
+									font-family: "Oswald", sans-serif;
+								}
 							}
 
 										}
 			.colLeft, .colRight {
-				display: inline-block;
+				@include floatLeft;
 				width: 45%;
-				float: left;
+				@include breakpoint(XS) {
+					float: none;
+					display: block;
+					width: 80%;
+				}
+
 			}
 
 			.colLeft ul {
@@ -379,6 +492,41 @@ dt a {
 			bottom: 0px;
 			/*width: 1170px;*/
 		}
+
+		#portfolio {
+			#svFolder {
+				background: transparent;
+			}
+			#svGallery.propertyGallery {
+				position: static;
+				background-image:none;
+				background: transparent;
+				width: 45%;
+				display: inline-block;
+				padding: 0;
+				margin-left: 25px;
+				min-height: 0;
+				ul {
+					li {
+						margin: 0 3.5% 0 0;
+					}
+				}
+			}
+				.bioThumb {
+					margin: 0 !important;
+				}
+				h2 {
+					
+				}
+
+				h3 {
+					margin: 0 0 10px 0;
+				}
+		}
+
+		.propertyTemp h2 {
+					display: none
+				}
 		#svFolder {
 			/*width: 1170px;*/
 			overflow: auto;
@@ -389,23 +537,30 @@ dt a {
 		}
 
 			.colLeft2 {
-				display: inline-block; 
+				@include floatLeft;
 				width: 37%; 
-				float: left;
+						@include breakpoint(XS) { display: block; float: none;
+				}
 				h3 {
 					font-weight: 300;
 					color: #229019;
-					@include breakpoint(S) {display: none!important;}
+				}
+				.moreInfo {
+					@include breakpoint(XS) {
+						display: none;
+					}
 				}
 				ul {
 					font-family: "Oswald", sans-serif;
-					@include breakpoint(S) {display: none!important;}
 					a {
 						text-decoration: underline;
 					}
 				}
 
 				address {
+					@include breakpoint(XS) {
+						display: none;
+					}
 					p {
 						font-size: 0.9em;
 						margin: 0 0 5px 0;
@@ -413,26 +568,25 @@ dt a {
 				}
 				img {
 					margin-bottom: 10px;
+					@include breakpoint(XS) {
+						display: none;
+					}
 				}
 			}
 
 			.colRight2 {
-				float: left; 
-				display: inline-block; 
+				@include floatLeft;
 				width: 62%;
-				@include breakpoint(M) { width: 55%; padding-left: 20px;
-				}
+		
 			}
 
 			.colLeft3 {
-				display: inline-block;
-				float: left;
+				@include floatLeft;
 				width: 72%;
 				padding-right: 20px;
 			}
 			.colRight3 {
-				display: inline-block;
-				float: left;
+				@include floatLeft;
 				width: 25%;
 				ul {
 					font-family: "Oswald", sans-serif;
@@ -481,16 +635,35 @@ dt a {
 						text-decoration: underline;
 					}
 				}
+				img {
+					@include breakpoint(XS) {
+						display: none;
+					}
+				}
 			}
 
 			.subPage a {
 				text-decoration: underline;
 			}
 
+			.breadcrumb {
+				margin: 0 50px 15px 0;
+				background-color: #e2ede1;
+				a {
+					color: #666;
+				}
+			}
+
 			footer {
 				font-family: "Oswald", sans-serif;
 				text-align: center;
 				.footerWrap {
+					@include breakpoint(XS) {
+						width: 100%;
+						p {
+							width: 100%;
+						}
+					}
 					width: 525px;
 					margin: 20px auto 0;
 				}
@@ -502,11 +675,12 @@ dt a {
 					width: 250px;
 				}
 				ul {
-					display: inline-block;
-					float: left;
+					@include breakpoint(XS) {
+						float: none;
+					}
+					@include floatLeft;
 					li {
-						display: inline-block;
-						float: left;
+						@include floatLeft;
 						list-style-type: none;
 						margin: 0 5px;
 						a {
@@ -541,9 +715,7 @@ table {
 	border-spacing: 5px;
 }
 
-	.colLeft h3, .colLeft ul{
-				@include breakpoint(S) {display: none!important;}
-			}
+
 
 	.ui-widget {
 		font-family: Arial,sans-serif;
@@ -584,6 +756,9 @@ table {
 	border-top: none;
 }
 
+#svFolder.newsEvents {
+	background: transparent;
+}
 .btn-primary {
 	@include linear-gradient(#32bc27, #22911a);
 }
@@ -609,4 +784,27 @@ table {
 	span {
 		font-family: "Oswald", sans-serif;
 	}
+}
+
+.searchResults {
+	p {
+		width: 62%;
+	}
+}
+
+figure {
+	display: inline-block;
+	float: right;
+	width: 450px;
+}
+
+.rhd {
+	min-height: 125px;
+	overflow: auto;
+	margin: 10px 0 0 0;
+}
+
+.mapBox {
+	width: 45%;
+	float: left;
 }
