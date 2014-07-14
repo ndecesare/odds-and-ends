@@ -1,0 +1,534 @@
+@import 'bourbon/bourbon';
+
+$grey: #58585a;
+$gold: #cc9544;
+$lightRed: #ca1d21;
+$darkRed: #811515;
+$yellow: #fef200;
+$maroon: #771317;
+
+@include font-face(Nunito, 'fonts/Nunito/nunito-regular'); //Avenir
+//@include font-face("Century Gothic", 'fonts/CenturyGothic/centurygothic'); //Avant Garde
+@include font-face("Hero Light", 'fonts/texgyreadventor_regular/texgyreadventor-regular');
+@include font-face("Hero Light Bold", 'fonts/texgyreadventor_regular/texgyreadventor-bld');
+@include font-face("Modern Pictograms", 'fonts/modernpictograms/modernpics'); //icons
+@include font-face("Hero Light", 'fonts/HeroLight/hero_light'); //Avant Garde
+
+@mixin floatLeft() {
+	display: inline-block;
+	float: left;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #fff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #fff;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #fff;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #fff;
+}
+
+
+@mixin breakpoint($point) {
+  @if $point == XL {
+    @media (min-width: 1200px) { @content; }
+  }
+  @else if $point == L {
+    @media (max-width: 1199px) /*and (min-width: 993px)*/ { @content; }
+  }
+    @else if $point == M {
+    @media  (max-width: 992px) { @content; }
+}
+
+  @else if $point == S {
+  	 @media (max-width: 991px) and (min-width: 768px) { @content; }
+  }
+
+  @else if $point == XS {
+    @media (max-width: 767px)  { @content; }
+
+
+  }
+}
+
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+body {
+	padding-top: 0;
+}
+
+.container, .span12 {
+	width: 100%;
+}
+
+
+
+.logo, .headerMain {
+	@include floatLeft();
+}
+
+.headerMain {
+	width: -webkit-calc(100% - 128px);
+	width: -moz-calc(100% - 128px);
+	width: calc(100% - 128px);
+	background-color: $grey;
+	height: 127px;
+}
+
+nav[class*="span"] {
+	margin-left: 0;
+}
+
+.navbar {
+	.nav {
+		font-family: "Nunito";
+		float: right;
+		text-transform: lowercase;
+		> li {
+			margin: 0 24px;
+		}
+	}
+}
+.row {
+	margin-left: 0;
+}
+
+.navbar-inner {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+.headerTop {
+	height: 85px;
+
+	h1 {
+		color: white;
+		font-family: "Hero Light";
+		margin: 30px 0 0 20px;
+		font-weight: 200;
+		display: inline-block;
+		font-size: 2em;
+	}
+	a {
+		color: white;
+		font-family: "Nunito";
+	}
+}
+
+.headerRight {
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+	margin-top: 13px;
+	a {
+		margin: 0 10px;
+	}
+	.cartBlock {
+		display: inline-block;
+		float: right;
+		margin-bottom: 7px;
+
+	}
+	.accountSearch {
+		clear: both;
+		input {
+			@include linear-gradient(#d1d2d4, #fff);
+			background-image: url(../assets/magGlass.png);
+			background-repeat: no-repeat;
+			background-position: right center;
+			border-radius: 50px;
+			height: 21px;
+			padding: 0;
+			text-indent: 10px;
+		}
+	}
+}
+
+
+/*****************************Main Content************************/
+
+.breadcrumb {
+	display: none;
+}
+
+.row-fluid {
+	position: relative;
+	.span3 {
+		display: none;
+	}
+	.span3.spacer {
+		display: block;
+		width: 14.07%;
+	}
+
+	.row-fluid[class*="span"] {
+		margin-left: 0 !important;
+	}
+
+	.span9 {
+		width: 60%;
+		//max-width: 850px;
+		//min-height: 467px;
+		p {
+			margin: 10px 20px 10px 0;
+
+		}
+
+
+
+	}
+	.span9.product {
+			width: 30% !important;
+			margin-left: 50px;
+			min-height: 467px;
+		}
+
+	.aboutRight {
+			width: 33%;
+			display: inline-block;
+			max-width: 450px;
+			float: right;
+			margin-left: 50px;
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+			button {
+		@include linear-gradient(#040406, #3a3a3c); 
+		border: 0;
+		color: white;
+		font-family: "Hero Light";
+		padding: 10px 20px;
+		font-size: 1.5em;
+		border-radius: 50px;
+		float: right;
+	}
+		}
+
+		.product + .aboutRight {
+			width: 44%;
+			float: none;
+			max-width: 575px;
+			button {
+				float: none;
+				font-weight: bold;
+			}
+			.add, .subtract {
+				font-size: 3em;
+			}
+			.addToCart {
+				margin-top: 10px;
+			}
+			h2 {
+				color: $maroon;
+				font-size: 4em;
+				&:first-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		.quantityBox {
+			width: 50px;
+		}
+		.trainingRight {
+	width: 26%;
+	margin-top: 30px;
+	display: inline-block;
+	float: right;
+}
+}
+
+
+.contact {
+	position: absolute;
+	bottom: 0;
+	z-index: 9999;
+	color: white;
+	background-color: black;
+	padding: 10px 20px;
+	font-family: "Hero Light";
+	font-size: 2em;
+	text-transform: lowercase;
+	left: 50px;
+	img {
+		margin-right: 10px;
+	}
+}
+.trainingRight {
+	background-color: #bdbec0;
+	padding: 0 30px 20px;
+	h2 {
+		color: $maroon;
+		clear: both;
+	}
+	p {
+		text-align: justify;
+	}
+	button {
+		@include linear-gradient(#040406, #3a3a3c); 
+		border: 0;
+		color: white;
+		font-family: "Hero Light";
+		padding: 10px 20px;
+		font-size: 1.5em;
+		border-radius: 50px;
+		float: right;
+	}
+}
+
+.span9.productContainer {
+	background: white;
+	background-image: none;
+}
+
+
+h2.pageHeader {
+	font-family:Arial;
+	font-weight: bold;
+	color: $maroon;
+	font-size: 4em;
+	padding: 10px;
+	margin-bottom: 0;
+	span {
+		font-family: "Hero Light";
+		font-weight: 100;
+	}
+}
+
+.bottomContent {
+	@include linear-gradient($lightRed, $darkRed);
+	height: 270px;
+	//margin-top: 20px;
+	border-top: 10px solid black;
+	font-family: "Hero Light";
+}
+
+.contentLeft {
+	width: 375px;
+	margin-left: 50px;
+	display: inline-block;
+	float: left;
+	@include breakpoint(L) {
+		width: 300px;
+	}
+	h1 {
+		font-size: 6em;
+		font-weight: 100;
+		color: white;
+		line-height: 75px;
+		margin-bottom: 23px;
+		display: inline-block;
+		@include breakpoint(L) {
+			font-size: 4em;
+		}
+
+		span {
+			color: $yellow;
+		}
+	}
+	p {
+		color: white;
+	}
+	input {
+		@include linear-gradient(#d1d2d4, #fff);
+		width: 345px;
+		border-radius: 50px;
+	}
+}
+
+.trainingLeft {
+	width: 26%;
+	h1 {
+		font-size: 4.5em;
+	}
+}
+
+.contentSlider {
+	@include breakpoint(L) {
+		width: 25%;
+	}
+	@include breakpoint(M) {
+		display: none;
+	}
+	display: inline-block;
+	float: left;
+	width: 29%;
+	margin: 30px 0 0 30px;
+	.slider {
+		h2 {
+			@include linear-gradient(#383839, #000);
+			color: white;
+			display: inline-block;
+			padding: 70px 0 70px 0;
+			border: solid 5px black;
+			text-align: center;
+			font-weight: 100;
+			font-size: 1.85em;
+			width: 238px;
+		}
+	}
+}
+
+.contentSlider.trainingSlider {
+	//width: 800px;
+	width: 66%;
+}
+
+
+.productSlider {
+	img {
+		border: none;
+	}
+}
+
+.productSmall {
+	li {
+		@include floatLeft();
+		list-style-type: none;
+	}
+}
+.contentSlider.productsSlider {
+	width: 94%;
+}
+
+.contentSlider.products {
+	width: 90%;
+	margin: 0 auto;
+	display: block;
+	float: none;
+}
+.contentRight {
+	float: right;
+	width: 375px;
+	@include breakpoint(L) {
+		width: 325px;
+	}
+	h1 {
+		font-size: 3.5em;
+		width: 350px;
+		color: white;
+		font-weight: 100;
+		@include breakpoint(L) {
+		font-size: 2.5em;
+		width: 325px;
+	}
+	}
+.emphasis {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+	.question {
+		font-family: Arial;
+		font-size: 2.2em;
+	}
+
+	.train {
+		display: inline-block;
+		position:relative;
+		margin-top: 20px;
+	}
+	button {
+		@include linear-gradient(#040406, #3a3a3c); 
+		border: 0;
+		color: white;
+		text-transform: lowercase;
+		font-family: "Hero Light";
+		padding: 10px 20px;
+		font-size: 2em;
+		border-radius: 50px;
+	}
+}
+
+
+.trainingInfo {
+	width:730px;
+	float: left;
+	h1 {
+		font-size: 3.5em;
+		width: 350px;
+		color: $maroon;
+		font-weight: 100;
+	}
+.emphasis {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+	.question {
+		font-family: Arial;
+		font-size: 2.2em;
+	}
+
+	.train {
+		display: inline-block;
+		position:relative;
+		margin-top: 20px;
+	}
+	p {
+		width: 350px;
+	}
+	img {
+		vertical-align: top;
+	}
+}
+
+.trainingInfoLeft {
+	display: inline-block;
+	p {
+		text-align: justify;
+	}
+}
+
+.price {
+	font-weight: 100;
+}
+
+.slick-dots {
+	//display: none !important;
+}
+/*******************************Footer***********************/
+
+footer {
+	@include linear-gradient(#040406, #3a3a3c);
+	width: 100%;
+	overflow: auto;
+	padding: 25px 0 5px;
+	ul {
+		li {
+			font-family: "Nunito";
+			list-style-type: none;
+			display: inline-block;
+			float: left;
+			color: white;
+			margin-right: 20px;
+			a {
+				color: $gold;
+			}
+
+		}
+	}
+	.pull-right {
+		margin-right: 20px;
+		a {
+			color: white;
+			&:hover {
+				text-decoration: none;
+			}
+				span {
+				font-family: "Modern Pictograms";
+				font-size: 2em;
+				}
+		}
+		
+			}
+}

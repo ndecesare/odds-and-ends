@@ -1,0 +1,311 @@
+@import 'bourbon/bourbon';
+
+@include font-face(Cinzel, '../fonts/Cinzel/Cinzel');
+@include font-face("Open Sans Semibold", '../fonts/OpenSansSemibold/opensans-semibold');
+
+$lightBlue: #22446a;
+$darkBlue: #18354f;
+$black: #242122;
+$lightBlack: #2d2d2d;
+$text: #e6e7e8;
+$white: #fff;
+$black: #000;
+$darkPurple: #59266a;
+$lightPurple: #6c3f7b;
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.topGradient {
+	@include linear-gradient($lightBlue, $darkBlue);
+	height: 23px;
+}
+
+.bigNav {
+	@include linear-gradient($black 0%, $lightBlack 50%, $black 100%);
+	height: 146px;
+	
+}
+
+/*****************************************HEADING****************************/
+
+header {
+	font-family: Georgia;
+	ul {
+		display: inline-block;
+		margin-left: -20px;
+		li {
+			
+			color: $text;
+			display: inline-block;
+			float: left;
+			background: #1e1e1e;
+			width: 200px;
+			height: 125px;
+			margin: 0 10px;
+			text-align: center;
+			@include transform(skewX(-33deg));
+			&:before {
+				@include transform(skewX(33deg));
+				content: "I am a";
+				display: block;
+				font: italic 0.8em Georgia;
+				margin: 20px 25px 0 0;
+			}
+			&:after {
+				
+			}
+
+			&:first-child {
+				margin: 0 10px 0 0;
+			}
+
+			&:hover {
+				@include linear-gradient(to right top,  $darkPurple 0%, $lightPurple 50%, $darkPurple 100%);
+				p {
+					.arrow {
+						border-color: transparent transparent transparent #fff;
+					}
+				}
+			}
+
+			p {
+				font: italic 0.8em Georgia;
+				.arrow {
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 5px 0 5px 10px;
+					border-color: transparent transparent transparent #643474;
+					position: relative;
+					margin-right: 2px;
+					display: inline-block;
+					margin-top: 10px;
+				}
+				}
+
+			a {
+				@include transform(skewX(33deg));
+				display: inline-block;
+				text-decoration: none;
+				color: $text;
+				margin: 0px 0 0 25px;
+				width: 100%;
+				height: 100%;
+
+				span.bigWord {
+					font: 1.5em "Cinzel";
+					border-width: 3px;
+				border-style: solid;
+				@include border-image(url(../img/bigNavRuler.png) 0 0 3 0);
+				}
+			}
+		}
+	}
+}
+.logoCont {
+	height: 136px;
+	width: 404px;
+	float: left;
+	background-image: url(../img/logobg.png);
+	background-repeat: no-repeat;
+	h1 {
+		margin: 30px auto;
+		background-image: url(../img/logo.png);
+		background-repeat: no-repeat;
+		width: 231px;
+		a {
+		display: inline-block;
+		height: 70px;
+		width: 231px;
+		}
+		&:before {
+		content: "welcome to the";
+		color: $text;
+		font-size: 0.8em;
+		font-style: italic;
+		position: absolute;
+		top: 25px;
+		left: 171px;
+		padding: 20px;
+		}
+
+	}
+
+}
+
+.topRight {
+	display: inline-block;
+	float: right;
+	width: 392px;
+	.topTopRight {
+		text-align: right;
+	}
+	.socialSearch {
+		text-align: right;
+	}
+}
+/**************************************************************MAIN CONTENT AREAS**********************************/
+
+#main {
+	background-image: url(../img/AHABG.jpg);
+	background-size: cover;
+	height: 1598px; /*temporary*/
+}
+
+.mainBanner {
+	clear: right;
+	width: 1100px;
+	margin: 0 auto;
+	height: 481px;
+	background-color: black;
+	ul {
+		width:995px;
+		float: right;
+		li {
+			display: inline-block;
+			float: left;
+			width: 198px;
+			text-align: center;
+			border-right: 1px solid $darkBlue;
+			a {
+				@include linear-gradient($darkBlue, $lightBlue);
+				font-family: "Open Sans Semibold";
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+				padding: 10px 0;
+				color: white;
+				text-decoration: none;
+				&:hover {
+					@include linear-gradient($darkPurple, $lightPurple);
+				}
+			}
+		}
+	}
+}
+
+.bannerBorderBottom {
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 36px 550px 0 550px;
+	border-color: $darkBlue transparent transparent transparent;
+}
+
+
+.homeContent {
+	height: 1200px;
+	background-color: white;
+	margin-top: 20px;
+	padding-top: 15px;
+}
+
+
+
+
+/*********************************CALENDAR************************************/
+
+header.calendarHead {
+	@include linear-gradient($lightBlue, $darkBlue);
+	width: 80%;
+	margin: 0 auto;
+	color: #edd495;
+	font-family: "Open Sans Semibold";
+	text-transform: uppercase;
+	height: 38px;
+	h2 {
+		display: inline-block;
+		float: left;
+		padding: 10px;
+	}
+	ul.calendarLinks {
+		display: inline-block;
+		float: right;
+		padding-right: 13px;
+		li {
+			height: auto;
+			width: auto;
+			background: $darkBlue;
+			padding: 10px;
+			text-align: left;
+			&:before {
+				content: none;
+			}
+			a {
+				margin: 0;
+				color: #edd495;
+				font-size: 0.8em;
+				padding: 0 20px;
+			}
+		}
+	}
+}
+.calendarSlider {
+	height: 130px;
+	overflow: hidden;
+}
+
+.calendar {
+	width: 80%;
+	margin: 0 auto;
+	border-collapse: separate;
+	color: #808285;
+	font-family: "Open Sans Semibold";
+	thead {
+		background-color: #e6e7e8;
+		border-spacing: 0;
+		th {
+			text-align: left;
+			padding: 5px 0 5px 5px;
+			text-transform: uppercase;
+			font-size: 0.8em;
+		}
+	}
+
+	tr {
+		td {
+		@include linear-gradient(to right, #d7d9da, #e6e7e8);
+		width: 120px;
+		height: 120px;
+		margin-right: 8px;
+		border: 3px solid white;
+		padding: 5px 0 0 5px;
+		&:first-child {
+			border-left: none;
+		}
+		&:last-child {
+			border-right: none;
+		}
+		}
+	}
+	
+}
+
+
+
+/**************************************************************SOCIAL MEDIA**********************************/
+
+button.login {
+	@include linear-gradient($lightBlue, $darkBlue);
+	color: #fff;
+	border: 0;
+	padding: 5px 20px;
+}
+
+.socials {
+	li {
+		display: inline-block;
+		float: left;
+		margin: 5px 5px 5px 0;
+	}
+}
+
+.primary {
+	width: 1107px;
+	margin: 0 auto;
+	padding-top: 30px;
+}
