@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello world!</title>
+<style>
+
+div {
+	text-align: center;
+}
+p {
+	text-align: center;
+	position: relative
+	top: 100px;
+}
+
+a {
+
+	padding: 0 50px;
+	border-style: outset;
+}
+a:active {
+	border-style: inset;
+}
+
+#q1 {
+	display: block;
+}
+#q2 {
+	display: none;
+}
+</style>
+</head>
+<body>
+<div id="q1">
+	<p id="question">This is the first div</p>
+	<input type="radio" name="buttons" value="Shaft"><label name="labels" id="a"></label><br>
+	<input type="radio" name="buttons" value="Elmo"><label name="labels" id="b"></label><br>
+	<input type="radio" name="buttons" value="Fozzie"><label name="labels" id="c"></label><br>
+	<input type="radio" name="buttons" value="Beaker"><label name="labels" id="d"></label>
+</div> <!--/q1-->
+<input type="submit" value="next" id="next">
+
+</body>
+<script>
+var allQuestions = [{
+	question: ["Which of these is not a Muppet?", "How many roads must a man walk down before you can call him a man?", "Who should you hire as a developer?"], 
+	choices: [["Shaft", "Elmo", "Fozzie", "Beaker"], ["Turn and face the strain", "You can't always get what you want", "All that glitters is not gold", "The answer my friend, is blowing in the wind"], ["Norman Schwarzkopf", "Nick De Cesare, of course :D", "Why not Zoidberg?", "Some inferior candidate who won't work as hard"]], 
+	correctAnswer: ["Shaft", "The answer my friend, is blowing in the wind", "Nick De Cesare, of course :D"]}];  //sets all questions and answers
+
+var div = document.getElementById('q1');
+var questions = document.getElementById('question');
+var button = document.getElementById('next');
+var radio = document.getElementsByName('buttons');
+var a = document.getElementById('a');
+var b = document.getElementById('b');
+var c = document.getElementById('c');
+var d = document.getElementById('d');
+var labels = document.getElementsByName('labels');
+var val;
+
+for(var j=0; j < radio.length; j++) {
+	radio[j].value = allQuestions[0].choices[0][j];
+}
+for (var k=0; k < radio.length; k++) {
+	labels[k].innerHTML = allQuestions[0].choices[0][k];
+}
+
+var score = 0;
+
+questions.innerHTML = allQuestions[0].question[0];
+var i = 0;
+
+button.onclick = function() {
+	var correct = allQuestions[0].correctAnswer[i];
+if (i < allQuestions[0].question.length) {
+
+for( var q in radio ) {
+	if (radio[q].checked)
+        val = radio[q].value;
+    }
+   		 if(val === correct) {
+    	score++;
+    }
+    console.log(score);
+i++;
+	
+	for(var l=0; l < radio.length; l++) {  //initializes l, checks if l is less than number of radio buttons, increments l
+		questions.innerHTML = allQuestions[0].question[i]; //sets the question at top of page
+		if (i < allQuestions[0].question.length){
+		radio[l].value = allQuestions[0].choices[i][l]; //sets value of each radio button.
+		//labels[l].innerHTML = allQuestions[0].choices[i][l]; //sets options for each question
+		a.innerHTML = allQuestions[0].choices[i][0];
+		b.innerHTML = allQuestions[0].choices[i][1];
+		c.innerHTML = allQuestions[0].choices[i][2];
+		d.innerHTML = allQuestions[0].choices[i][3];
+	}
+	else {
+		questions.remove();
+		div.remove();
+		button.remove();
+		var displayScore = document.createElement('div');
+		displayScore.innerHTML = "your score:" + score;
+		document.body.appendChild(displayScore);
+		break;
+	}
+		} //end text setting
+		
+	}
+
+} 
+
+</script>
+</html>
